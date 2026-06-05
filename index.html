@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O'jus — Saveurs naturelles africaines</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #E8620A;
+  --orange-light: #F97316;
+  --dark: #0f1117;
+  --gray: #6B7280;
+  --light-bg: #FAFAF8;
+  --card-bg: #FFFFFF;
+  --border: #E5E7EB;
+  --text: #1a1a1a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: #fff;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 40px;
+  height: 60px;
+  gap: 60px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 1rem;
+  color: var(--text); text-decoration: none;
+}
+.nav-logo .logo-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #f97316, #22c55e);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links a {
+  text-decoration: none; font-size: .875rem; font-weight: 500;
+  color: var(--gray); padding: 6px 14px; border-radius: 6px;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active {
+  background: var(--orange); color: #fff;
+}
+
+/* ── HERO ── */
+#accueil {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1546630392-db5b1f04874a?w=1600&q=80') center/cover no-repeat;
+  filter: brightness(0.45);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  padding: 20px;
+}
+.hero-logo-box {
+  width: 200px; height: 200px; border-radius: 16px;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700; color: #fff;
+  line-height: 1.2;
+}
+.hero-content p {
+  font-size: 1rem; color: rgba(255,255,255,0.85);
+}
+.btn-primary {
+  background: var(--orange); color: #fff;
+  border: none; padding: 12px 28px;
+  border-radius: 8px; font-size: .9rem; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: #d45508; transform: translateY(-1px); }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.15); color: #fff;
+  border: 2px solid rgba(255,255,255,0.85); padding: 10px 26px;
+  border-radius: 8px; font-size: .9rem; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  backdrop-filter: blur(6px);
+  transition: background .2s, transform .15s, border-color .2s;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.28);
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+
+.hero-buttons {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  justify-content: center; align-items: center;
+  margin-top: 4px;
+}
+
+/* ── SECTIONS COMMUNES ── */
+section { padding: 80px 40px; }
+.section-center { text-align: center; }
+.section-center h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 12px; }
+.section-center p  { color: var(--gray); max-width: 560px; margin: 0 auto; line-height: 1.65; }
+
+/* ── POURQUOI ── */
+#pourquoi { background: #fff; }
+.cards-3 {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px; max-width: 900px; margin: 48px auto 0;
+}
+.feature-card {
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 24px; background: var(--card-bg);
+  transition: box-shadow .2s;
+}
+.feature-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.feature-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: #FFF3E0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin-bottom: 16px;
+}
+.feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+.feature-card p  { font-size: .875rem; color: var(--gray); line-height: 1.55; }
+
+/* ── PRODUITS ── */
+#produits { background: var(--light-bg); }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px; max-width: 1100px; margin: 48px auto 0;
+}
+.product-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px 20px;
+  transition: box-shadow .2s, transform .2s;
+}
+.product-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+  transform: translateY(-3px);
+}
+.product-emoji {
+  font-size: 2rem; margin-bottom: 14px; display: block;
+}
+.product-card h3 {
+  font-size: .8rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 8px; color: var(--text);
+}
+.product-card p { font-size: .8rem; color: var(--gray); line-height: 1.5; margin-bottom: 12px; }
+.product-line {
+  height: 3px; width: 32px; border-radius: 2px;
+}
+
+/* ── AVANTAGES ── */
+#avantages { background: #fff; }
+.avantages-hero {
+  background: linear-gradient(135deg, #FFF3E0 0%, #F0FFF4 100%);
+  border-radius: 16px; padding: 60px 40px;
+  text-align: center; margin-bottom: 64px;
+  max-width: 900px; margin-left: auto; margin-right: auto;
+}
+.avantages-hero h2 { font-size: clamp(1.8rem,4vw,2.4rem); font-weight: 700; margin-bottom: 12px; }
+.avantages-hero p  { color: var(--gray); max-width: 480px; margin: 0 auto; }
+
+.fidelite-title { text-align: center; margin-bottom: 40px; }
+.fidelite-title h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+.fidelite-title p  { color: var(--gray); max-width: 480px; margin: 0 auto; }
+
+.cards-2x2 {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; max-width: 860px; margin: 0 auto 80px;
+}
+.avantage-card {
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px; background: #fff;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.avantage-card .av-icon {
+  font-size: 1.4rem; flex-shrink: 0;
+  width: 42px; height: 42px; background: #FFF3E0;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  color: var(--orange);
+}
+.avantage-card h4 { font-size: .95rem; font-weight: 600; margin-bottom: 6px; }
+.avantage-card p  { font-size: .825rem; color: var(--gray); line-height: 1.5; }
+
+/* ── ATOUTS ── */
+.atouts-section { max-width: 900px; margin: 0 auto; }
+.atouts-title { text-align: center; margin-bottom: 32px; }
+.atouts-title h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+.atouts-title p  { color: var(--gray); }
+
+.cards-2 {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin-bottom: 80px;
+}
+.atout-card {
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px; background: #fff;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.atout-card .at-icon {
+  font-size: 1.2rem; flex-shrink: 0;
+  width: 40px; height: 40px; background: #FFF3E0;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.atout-card h4 { font-size: .95rem; font-weight: 600; margin-bottom: 6px; }
+.atout-card p  { font-size: .825rem; color: var(--gray); line-height: 1.5; }
+
+/* ── TEMOIGNAGES ── */
+.temoignages-title { text-align: center; margin-bottom: 32px; }
+.temoignages-title h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+.temoignages-title p  { color: var(--gray); }
+
+.temoignages-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px; max-width: 1000px; margin: 0 auto;
+}
+.temoignage-card {
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px; background: #fff;
+}
+.stars { color: var(--orange); font-size: 1.1rem; margin-bottom: 12px; }
+.temoignage-card blockquote {
+  font-size: .875rem; color: var(--gray);
+  font-style: italic; line-height: 1.6; margin-bottom: 16px;
+}
+.temoignage-card .author { font-weight: 600; font-size: .875rem; }
+
+/* ── CONTACT ── */
+#contact { background: var(--light-bg); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px; max-width: 800px; margin: 48px auto 0;
+}
+@media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-info h3 { font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
+.contact-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-bottom: 16px;
+}
+.contact-item .ci-icon {
+  width: 36px; height: 36px; background: #FFF3E0;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; flex-shrink: 0; color: var(--orange);
+}
+.contact-item p { font-size: .875rem; color: var(--gray); }
+.contact-item strong { display: block; color: var(--text); font-weight: 600; margin-bottom: 2px; }
+
+.contact-form h3 { font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: .8rem; font-weight: 600; margin-bottom: 6px; }
+.form-group input,
+.form-group textarea {
+  width: 100%; border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px;
+  font-family: 'Inter', sans-serif; font-size: .875rem;
+  outline: none; transition: border-color .2s;
+  background: #fff;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--orange); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark); color: #fff;
+  padding: 48px 40px 24px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px; max-width: 1000px; margin: 0 auto 40px;
+}
+@media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand .brand-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 1rem; color: #fff;
+  margin-bottom: 12px; text-decoration: none;
+}
+.footer-brand .brand-logo .logo-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #f97316, #22c55e);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.footer-brand p { font-size: .825rem; color: #9CA3AF; line-height: 1.6; }
+.footer-col h4 { font-size: .8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9CA3AF; margin-bottom: 14px; }
+.footer-col a { display: block; color: #D1D5DB; font-size: .875rem; text-decoration: none; margin-bottom: 8px; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-contact-item { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; color: #D1D5DB; font-size: .875rem; }
+.footer-contact-item span.ic { color: var(--orange); }
+.footer-bottom {
+  border-top: 1px solid #374151; padding-top: 20px;
+  text-align: center; font-size: .8rem; color: #6B7280;
+  max-width: 1000px; margin: 0 auto;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  section { padding: 60px 20px; }
+  nav { padding: 0 16px; gap: 20px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#accueil" class="nav-logo">
+    <img src="./logo.png" alt="O'jus Logo" class="logo-icon">
+    O'jus
+  </a>
+  <div class="nav-links">
+    <a href="#accueil" class="active" id="nav-accueil">Accueil</a>
+    <a href="#produits" id="nav-produits">Produits</a>
+    <a href="#avantages" id="nav-avantages">Avantages</a>
+    <a href="#contact" id="nav-contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="accueil" style="padding:0">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img src="./logo.png" alt="O'jus Logo" class="hero-logo-box">
+    <h1>O'jus – Saveurs<br>naturelles africaines</h1>
+    <p>Découvrez nos jus 100% naturels, fabriqués avec passion</p>
+    <div class="hero-buttons">
+      <a href="#produits" class="btn-primary">Découvrir nos produits →</a>
+      <a href="./catalogue_ojus.html" class="btn-secondary">📖 Voir le catalogue</a>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section id="pourquoi">
+  <div class="section-center">
+    <h2>Pourquoi choisir O'jus ?</h2>
+    <p>Nous nous engageons à vous offrir des produits de qualité supérieure, respectueux de votre santé et de l'environnement.</p>
+  </div>
+  <div class="cards-3">
+    <div class="feature-card">
+      <div class="feature-icon">🌿</div>
+      <h3>100% naturel</h3>
+      <p>Nos jus sont fabriqués à partir de fruits frais, sans conservateurs ni additifs artificiels.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">❤️</div>
+      <h3>Fait avec passion</h3>
+      <p>Chaque bouteille est préparée avec soin pour vous offrir le meilleur des saveurs africaines.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✨</div>
+      <h3>Saveurs authentiques</h3>
+      <p>Découvrez des recettes traditionnelles revisitées avec des ingrédients locaux de qualité.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section id="produits">
+  <div class="section-center">
+    <h2>Nos produits</h2>
+    <p>Une sélection de 15 boissons naturelles, chacune avec ses bienfaits uniques pour votre santé et votre plaisir.</p>
+  </div>
+  <!-- PRODUCTS_GRID_START -->
+  <div class="products-grid" id="productGrid"></div>
+  <script>
+    const STORAGE_KEY = 'products';
+    function loadProducts(){
+      const raw = localStorage.getItem(STORAGE_KEY) || '[]';
+      try { return JSON.parse(raw); } catch { return []; }
+    }
+    function render(){
+      const grid = document.getElementById('productGrid');
+      const products = loadProducts();
+      console.log('Products loaded:', products, 'Count:', products.length);
+      if(products.length===0){
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#6B7280; padding:40px;">Aucun produit à afficher.</p>';
+        return;
+      }
+      grid.innerHTML = products.map(p=>`
+        <div class="product-card">
+          <img src="${p.image}" alt="${p.name}" style="width:100%; height:150px; object-fit:cover; border-radius:8px; margin-bottom:12px;" onerror="this.src='https://via.placeholder.com/150?text=${encodeURIComponent(p.name)}'">
+          <h3>${p.name}</h3>
+          <p>${p.description || 'Produit de qualité'}</p>
+          <p style="font-weight:bold; color:var(--orange); margin-top:8px;">Prix : ${Number(p.price).toFixed(2)} CFA</p>
+          <div class="product-line" style="background:#94A3B8"></div>
+        </div>`).join('');
+    }
+    document.addEventListener('DOMContentLoaded',render);
+    // Écouter les changements de localStorage depuis admin.html
+    window.addEventListener('storage', function(e) {
+      if(e.key === STORAGE_KEY) {
+        console.log('Storage updated, re-rendering...');
+        render();
+      }
+    });
+  </script>
+<!-- PRODUCTS_GRID_END -->
+  <div class="products-grid">
+    <div class="product-card">
+      <span class="product-emoji">🥛</span>
+      <h3>Lait</h3>
+      <p>Lait frais et onctueux, riche en calcium et protéines pour votre vitalité quotidienne.</p>
+      <div class="product-line" style="background:#94A3B8"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🥄</span>
+      <h3>Lait Caillé</h3>
+      <p>Lait fermenté traditionnel, probiotique naturel pour une digestion optimale.</p>
+      <div class="product-line" style="background:#60A5FA"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🌾</span>
+      <h3>Dégué</h3>
+      <p>Dessert lacté au mil, saveur douce et crémeuse, tradition ouest-africaine.</p>
+      <div class="product-line" style="background:#F59E0B"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🍶</span>
+      <h3>Yaourt Grotto</h3>
+      <p>Yaourt artisanal onctueux, texture veloutée et goût authentique.</p>
+      <div class="product-line" style="background:#A78BFA"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🌿</span>
+      <h3>Menthe au Lait</h3>
+      <p>Fraîcheur mentholée et douceur lactée, boisson rafraîchissante et digestive.</p>
+      <div class="product-line" style="background:#34D399"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🍓</span>
+      <h3>Fraise au Lait</h3>
+      <p>Onctuosité du lait et saveur fruitée de la fraise, plaisir gourmand.</p>
+      <div class="product-line" style="background:#F87171"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">☕</span>
+      <h3>Café au Lait</h3>
+      <p>Café robuste et lait crémeux, énergie et douceur pour bien démarrer.</p>
+      <div class="product-line" style="background:#92400E"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🌺</span>
+      <h3>Bissap</h3>
+      <p>Infusion d'hibiscus rouge, riche en antioxydants, saveur acidulée rafraîchissante.</p>
+      <div class="product-line" style="background:#BE185D"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🫚</span>
+      <h3>Gnamankou</h3>
+      <p>Jus de gingembre épicé, tonifiant naturel aux vertus digestives et énergisantes.</p>
+      <div class="product-line" style="background:#F97316"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🌳</span>
+      <h3>Baobab</h3>
+      <p>Fruit du baobab, super-aliment africain riche en vitamine C et fibres.</p>
+      <div class="product-line" style="background:#22C55E"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🍈</span>
+      <h3>Tomi</h3>
+      <p>Jus de tamarin acidulé, désaltérant et riche en vitamines, saveur unique.</p>
+      <div class="product-line" style="background:#78350F"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🍋</span>
+      <h3>Citron</h3>
+      <p>Jus de citron frais pressé, vitamine C naturelle, boost immunitaire garanti.</p>
+      <div class="product-line" style="background:#EAB308"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🌽</span>
+      <h3>Kôkôta</h3>
+      <p>Boisson traditionnelle au mil fermenté, énergisante et nutritive.</p>
+      <div class="product-line" style="background:#F59E0B"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🍓</span>
+      <h3>Fraise</h3>
+      <p>Pur jus de fraise, saveur sucrée et parfumée, antioxydants naturels.</p>
+      <div class="product-line" style="background:#F43F5E"></div>
+    </div>
+    <div class="product-card">
+      <span class="product-emoji">🫐</span>
+      <h3>Zomkome</h3>
+      <p>Farine de mil rouge, boisson énergétique traditionnelle, force et vitalité.</p>
+      <div class="product-line" style="background:#6366F1"></div>
+    </div>
+  <!-- PRODUCTS_GRID_END -->
+  </div>
+</section>
+
+<!-- AVANTAGES -->
+<section id="avantages">
+  <div class="avantages-hero">
+    <h2>Vos avantages O'jus</h2>
+    <p>Rejoignez notre programme de fidélité et profitez d'avantages exclusifs à chaque achat.</p>
+  </div>
+
+  <div class="fidelite-title">
+    <h3>Programme de fidélité</h3>
+    <p>Plus vous achetez, plus vous gagnez. Découvrez tous les avantages de notre programme.</p>
+  </div>
+  <div class="cards-2x2">
+    <div class="avantage-card">
+      <div class="av-icon">🎁</div>
+      <div>
+        <h4>Récompenses exclusives</h4>
+        <p>Gagnez des points à chaque achat et échangez-les contre des produits gratuits ou des réductions.</p>
+      </div>
+    </div>
+    <div class="avantage-card">
+      <div class="av-icon">⭐</div>
+      <div>
+        <h4>Offres spéciales membres</h4>
+        <p>Accédez en avant-première à nos nouveaux produits et bénéficiez de promotions réservées.</p>
+      </div>
+    </div>
+    <div class="avantage-card">
+      <div class="av-icon">🤝</div>
+      <div>
+        <h4>Programme de parrainage</h4>
+        <p>Parrainez vos amis et recevez des bonus pour chaque nouveau client que vous nous recommandez.</p>
+      </div>
+    </div>
+    <div class="avantage-card">
+      <div class="av-icon">⚡</div>
+      <div>
+        <h4>Livraison prioritaire</h4>
+        <p>Les membres fidèles bénéficient d'une livraison accélérée et de frais réduits.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="atouts-section">
+    <div class="atouts-title">
+      <h3>Les atouts O'jus</h3>
+      <p>Ce qui nous distingue et fait de nous votre partenaire santé de confiance.</p>
+    </div>
+    <div class="cards-2">
+      <div class="atout-card">
+        <div class="at-icon">❤️</div>
+        <div>
+          <h4>Qualité garantie</h4>
+          <p>Tous nos produits sont soumis à des contrôles qualité rigoureux pour votre sécurité et satisfaction.</p>
+        </div>
+      </div>
+      <div class="atout-card">
+        <div class="at-icon">👥</div>
+        <div>
+          <h4>Service client dédié</h4>
+          <p>Notre équipe est à votre écoute pour répondre à toutes vos questions et vous accompagner.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="temoignages-title">
+      <h3>Ce que disent nos clients</h3>
+      <p>Découvrez les témoignages de ceux qui ont adopté O'jus dans leur quotidien.</p>
+    </div>
+    <div class="temoignages-grid">
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Les jus O'jus sont devenus indispensables dans ma famille. Le bissap est mon préféré, et mes enfants adorent le lait fraise !"</blockquote>
+        <div class="author">Aminata Traoré</div>
+      </div>
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Enfin des produits 100% naturels et authentiques. Le gnamankou me donne de l'énergie toute la journée."</blockquote>
+        <div class="author">Ibrahim Sawadogo</div>
+      </div>
+      <div class="temoignage-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Le programme de fidélité est très avantageux. J'ai déjà économisé beaucoup grâce aux points accumulés."</blockquote>
+        <div class="author">Fatou Diallo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-center">
+    <h2>Contactez-nous</h2>
+    <p>Nous sommes là pour répondre à toutes vos questions.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Informations de contact</h3>
+      <div class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <div>
+          <strong>Email</strong>
+          <p>ephilinez@gmail.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <div>
+          <strong>Téléphone</strong>
+          <p>+225 07 18 50 54 54</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <strong>Adresse</strong>
+          <p>Bouaké, Côte d'Ivoire</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Envoyer un message</h3>
+      <form id="contactForm" onsubmit="handleContactSubmit(event)">
+        <div class="form-group">
+          <label>Nom complet</label>
+          <input type="text" id="contactName" placeholder="Votre nom" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="contactEmail" placeholder="votre@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="contactMessage" placeholder="Votre message..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Envoyer le message</button>
+      </form>
+      <div id="contactStatus" style="margin-top:12px; text-align:center; display:none; padding:8px; border-radius:4px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#accueil" class="brand-logo">
+        <img src="./logo.png" alt="O'jus Logo" class="logo-icon">
+        O'jus
+      </a>
+      <p>Saveurs naturelles africaines. Des jus 100% naturels, fabriqués avec passion pour votre bien-être.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Liens rapides</h4>
+      <a href="#accueil">Accueil</a>
+      <a href="#produits">Nos produits</a>
+      <a href="#avantages">Avantages</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item"><span class="ic">✉️</span> ephilinez@gmail.com</div>
+      <div class="footer-contact-item"><span class="ic">📞</span> +225 0718505454</div>
+      <div class="footer-contact-item"><span class="ic">📍</span> Bouaké, Cote d'ivoire</div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 O'jus. Tous droits réservés.</div>
+</footer>
+
+<script>
+  const CONTACT_EMAIL = 'ephilinez@gmail.com';
+  const CONTACT_MESSAGES_KEY = 'contact_messages';
+
+  // Navbar active link on scroll
+  const sections = ['accueil','produits','avantages','contact'];
+  window.addEventListener('scroll', () => {
+    let current = 'accueil';
+    sections.forEach(id => {
+      const el = document.getElementById(id) || document.querySelector('#' + id);
+      if (el && window.scrollY >= el.offsetTop - 80) current = id;
+    });
+    sections.forEach(id => {
+      const link = document.getElementById('nav-' + id);
+      if (link) link.classList.toggle('active', id === current);
+    });
+  });
+
+  // Contact Form Handler
+  function handleContactSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    const statusDiv = document.getElementById('contactStatus');
+
+    if (!name || !email || !message) {
+      statusDiv.style.display = 'block';
+      statusDiv.style.backgroundColor = '#FEE2E2';
+      statusDiv.style.color = '#DC2626';
+      statusDiv.textContent = 'Veuillez remplir tous les champs';
+      return;
+    }
+
+    // Sauvegarder le message localement (toujours, même si l'envoi échoue)
+    const messages = JSON.parse(localStorage.getItem(CONTACT_MESSAGES_KEY) || '[]');
+    messages.push({
+      id: Date.now().toString(36),
+      name,
+      email,
+      message,
+      timestamp: new Date().toISOString(),
+      read: false
+    });
+    localStorage.setItem(CONTACT_MESSAGES_KEY, JSON.stringify(messages));
+
+    // Envoi via EmailJS
+    const sendBtn = e.target.querySelector('button[type="submit"]');
+    const originalLabel = sendBtn.textContent;
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Envoi en cours…';
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+      to_email: CONTACT_EMAIL,
+    };
+
+    emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+      .then(() => {
+        statusDiv.style.display = 'block';
+        statusDiv.style.backgroundColor = '#DCFCE7';
+        statusDiv.style.color = '#166534';
+        statusDiv.textContent = '✅ Message envoyé avec succès ! Nous vous répondrons à ' + email + ' bientôt.';
+        document.getElementById('contactForm').reset();
+      })
+      .catch((err) => {
+        // EmailJS a échoué, mais le message est sauvé localement — on prévient l'admin via admin.html
+        console.error('EmailJS error:', err);
+        statusDiv.style.display = 'block';
+        statusDiv.style.backgroundColor = '#FEF3C7';
+        statusDiv.style.color = '#92400E';
+        statusDiv.textContent = '⚠️ Message enregistré localement. L\'envoi par mail a échoué, l\'équipe le recevra via le tableau de bord.';
+      })
+      .finally(() => {
+        sendBtn.disabled = false;
+        sendBtn.textContent = originalLabel;
+        setTimeout(() => { statusDiv.style.display = 'none'; }, 6000);
+      });
+  }
+</script>
+
+<!-- EmailJS SDK -->
+<script
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+  integrity="sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS"
+  crossorigin="anonymous"></script>
+<script>
+  // Config EmailJS — remplit ces 3 valeurs après avoir créé ton compte sur emailjs.com
+  const EMAILJS_CONFIG = {
+    PUBLIC_KEY:    'bTi71PSyFRQ8LC4mL',     // Account → API Keys
+    SERVICE_ID:    'service_ake129e',     // Email Services → ton service Gmail/Outlook
+    TEMPLATE_ID:   'template_vzddwfu',    // Email Templates → ton template
+  };
+  window.addEventListener('load', () => {
+    if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY !== 'TA_PUBLIC_KEY_ICI') {
+      emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+    }
+  });
+</script>
+</body>
+</html>

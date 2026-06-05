@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O'Jus — Catalogue de Jus 100% Naturels</title>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:   #E8620A;
+    --gold:     #F4A823;
+    --green:    #2E7D32;
+    --cream:    #FDF6EC;
+    --brown:    #5D3A1A;
+    --red:      #C0392B;
+    --pattern:  #F4A823;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--cream);
+    color: var(--brown);
+    overflow-x: hidden;
+  }
+
+  /* ── PATTERN AFRICAIN (kente simplifié) ── */
+  .kente {
+    background-image:
+      repeating-linear-gradient(90deg, var(--orange) 0px, var(--orange) 8px, transparent 8px, transparent 24px),
+      repeating-linear-gradient(0deg,  var(--gold)   0px, var(--gold)   4px, transparent 4px, transparent 20px);
+    height: 12px;
+    width: 100%;
+  }
+  .kente-thick {
+    background-image:
+      repeating-linear-gradient(90deg, var(--green)  0px, var(--green)  6px, var(--gold) 6px, var(--gold) 12px, var(--orange) 12px, var(--orange) 18px, var(--brown) 18px, var(--brown) 24px);
+    height: 18px;
+    width: 100%;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--orange);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 50%, rgba(244,168,35,0.35) 0%, transparent 55%),
+      radial-gradient(circle at 85% 30%, rgba(255,255,255,0.08) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .header-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 40px;
+    text-align: center;
+  }
+  .adinkra-ring {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.2rem;
+    box-shadow: 0 0 0 6px var(--brown), 0 0 0 10px var(--gold), 0 8px 30px rgba(0,0,0,0.3);
+    margin-bottom: 22px;
+    animation: pulse-ring 3s ease-in-out infinite;
+  }
+  @keyframes pulse-ring {
+    0%,100% { box-shadow: 0 0 0 6px var(--brown), 0 0 0 10px var(--gold), 0 8px 30px rgba(0,0,0,0.3); }
+    50%      { box-shadow: 0 0 0 6px var(--brown), 0 0 0 16px rgba(244,168,35,0.5), 0 8px 40px rgba(0,0,0,0.4); }
+  }
+  .logo-title {
+    font-family: 'Yeseva One', serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    color: #fff;
+    letter-spacing: 4px;
+    line-height: 1;
+    text-shadow: 3px 3px 0 var(--brown);
+  }
+  .logo-sub {
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+  .hero-tagline {
+    margin-top: 18px;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.92);
+    max-width: 380px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV FILTRES ── */
+  .filter-bar {
+    background: var(--brown);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px 20px;
+  }
+  .filter-btn {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: 1px;
+    padding: 7px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all .25s;
+    text-transform: uppercase;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold);
+    color: var(--brown);
+  }
+
+  /* ── SECTION TITRE ── */
+  .section-head {
+    text-align: center;
+    padding: 48px 20px 12px;
+  }
+  .section-head h2 {
+    font-family: 'Yeseva One', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: var(--orange);
+    position: relative;
+    display: inline-block;
+  }
+  .section-head h2::after {
+    content: '';
+    display: block;
+    height: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--green), var(--gold), var(--orange));
+    margin-top: 8px;
+  }
+  .section-head p {
+    margin-top: 10px;
+    color: var(--brown);
+    opacity: .75;
+    font-size: .95rem;
+  }
+
+  /* ── GRILLE PRODUITS ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 28px;
+    padding: 32px clamp(16px, 5vw, 60px) 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── CARTE PRODUIT ── */
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(93,58,26,0.10);
+    transition: transform .3s, box-shadow .3s;
+    animation: fadeUp .55s ease both;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 36px rgba(93,58,26,0.18);
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .card:nth-child(2) { animation-delay:.07s; }
+  .card:nth-child(3) { animation-delay:.14s; }
+  .card:nth-child(4) { animation-delay:.21s; }
+  .card:nth-child(5) { animation-delay:.28s; }
+  .card:nth-child(6) { animation-delay:.35s; }
+
+  .card-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: var(--green);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .card-badge.new  { background: var(--red); }
+  .card-badge.best { background: var(--orange); }
+
+  .card-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+  }
+  /* Bande décorative en bas de l'image */
+  .card-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    background: repeating-linear-gradient(90deg, var(--orange) 0 12px, var(--gold) 12px 24px, var(--green) 24px 36px, var(--brown) 36px 48px);
+  }
+
+  .card-body { padding: 20px 20px 22px; }
+  .card-name {
+    font-family: 'Yeseva One', serif;
+    font-size: 1.2rem;
+    color: var(--brown);
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: .88rem;
+    color: #7a5c3a;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-price {
+    font-family: 'Yeseva One', serif;
+    font-size: 1.3rem;
+    color: var(--orange);
+  }
+  .card-price span {
+    font-family: 'Nunito', sans-serif;
+    font-size: .75rem;
+    color: #aaa;
+    margin-left: 4px;
+    font-weight: 600;
+  }
+  .btn-cmd {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 25px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+  }
+  .btn-cmd:hover { background: var(--brown); transform: scale(1.05); }
+
+  /* ── BANDEAU PROMO ── */
+  .promo-band {
+    background: var(--green);
+    color: #fff;
+    text-align: center;
+    padding: 18px 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .promo-band strong { color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown);
+    color: var(--gold);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: .9rem;
+  }
+  footer .brand { font-family: 'Yeseva One', serif; font-size: 1.4rem; color: #fff; }
+  footer p { margin-top: 8px; opacity: .75; }
+
+  /* ── HIDDEN ── */
+  .card[data-cat].hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="kente-thick"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="adinkra-ring">🍊</div>
+    <div class="logo-title">O'JUS</div>
+    <div class="logo-sub">Jus 100% Naturels</div>
+    <p class="hero-tagline">L'authenticité africaine dans chaque goutte — fraîcheur pure, saveurs vraies, directement de la nature à vous.</p>
+  </div>
+</header>
+
+<div class="kente"></div>
+
+<!-- BANDE PROMO -->
+<div class="promo-band">
+  🎉 Livraison offerte dès <strong>3 bouteilles</strong> commandées — Fraîcheur garantie chaque matin !
+</div>
+
+<!-- FILTRES -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filter('all', this)">Tous</button>
+  <button class="filter-btn" onclick="filter('agrumes', this)">Agrumes 🍋</button>
+  <button class="filter-btn" onclick="filter('tropical', this)">Tropical 🥭</button>
+  <button class="filter-btn" onclick="filter('mixte', this)">Mélanges 🍓</button>
+  <button class="filter-btn" onclick="filter('detox', this)">Détox 🌿</button>
+</div>
+
+<!-- TITRE SECTION -->
+<div class="section-head">
+  <h2>Notre Catalogue</h2>
+  <p>Tous nos jus sont pressés à froid, sans sucre ajouté, sans conservateur.</p>
+</div>
+
+<!-- GRILLE PRODUITS -->
+<div class="grid" id="grid">
+
+  <!-- 1 -->
+  <div class="card" data-cat="agrumes">
+    <div class="card-badge best">⭐ Best</div>
+    <div class="card-img" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)">🍊</div>
+    <div class="card-body">
+      <div class="card-name">Jus d'Orange Pure</div>
+      <div class="card-desc">Oranges fraîchement pressées, vitamine C naturelle, goût sucré et acidulé à la fois.</div>
+      <div class="card-footer">
+        <div class="card-price">500 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Jus d\'Orange Pure')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card" data-cat="tropical">
+    <div class="card-badge new">Nouveau</div>
+    <div class="card-img" style="background:linear-gradient(135deg,#fff8e1,#ffe082)">🥭</div>
+    <div class="card-body">
+      <div class="card-name">Nectar de Mangue</div>
+      <div class="card-desc">Mangue locale 100% pure, onctueuse et sucrée naturellement, parfum envoûtant.</div>
+      <div class="card-footer">
+        <div class="card-price">600 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Nectar de Mangue')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card" data-cat="tropical">
+    <div class="card-img" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0)">🍉</div>
+    <div class="card-body">
+      <div class="card-name">Jus de Pastèque</div>
+      <div class="card-desc">Rafraîchissant et léger, idéal pour les grandes chaleurs africaines. Hydratation maximale.</div>
+      <div class="card-footer">
+        <div class="card-price">450 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Jus de Pastèque')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card" data-cat="mixte">
+    <div class="card-badge best">⭐ Best</div>
+    <div class="card-img" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7)">🍓</div>
+    <div class="card-body">
+      <div class="card-name">Cocktail Fruits Rouges</div>
+      <div class="card-desc">Mélange fraise, framboise et bissap — riche en antioxydants, couleur éclatante.</div>
+      <div class="card-footer">
+        <div class="card-price">650 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Cocktail Fruits Rouges')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card" data-cat="detox">
+    <div class="card-badge new">Nouveau</div>
+    <div class="card-img" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">🌿</div>
+    <div class="card-body">
+      <div class="card-name">Détox Ananas & Gingembre</div>
+      <div class="card-desc">Purification naturelle, gingembre frais anti-inflammatoire et ananas digestif.</div>
+      <div class="card-footer">
+        <div class="card-price">700 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Détox Ananas & Gingembre')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card" data-cat="agrumes">
+    <div class="card-img" style="background:linear-gradient(135deg,#fffde7,#fff9c4)">🍋</div>
+    <div class="card-body">
+      <div class="card-name">Citronnade Menthe</div>
+      <div class="card-desc">Citron pressé, menthe fraîche — fraîcheur intense, parfaite en toute saison.</div>
+      <div class="card-footer">
+        <div class="card-price">400 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Citronnade Menthe')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card" data-cat="tropical">
+    <div class="card-img" style="background:linear-gradient(135deg,#e0f7fa,#b2ebf2)">🥥</div>
+    <div class="card-body">
+      <div class="card-name">Eau de Coco Pure</div>
+      <div class="card-desc">Noix de coco fraîche, isotonique naturel, réhydratation parfaite après l'effort.</div>
+      <div class="card-footer">
+        <div class="card-price">550 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Eau de Coco Pure')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card" data-cat="mixte">
+    <div class="card-img" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)">🍍</div>
+    <div class="card-body">
+      <div class="card-name">Tropical Sunrise</div>
+      <div class="card-desc">Ananas, mangue et orange — explosion de saveurs tropicales en une seule bouteille.</div>
+      <div class="card-footer">
+        <div class="card-price">700 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Tropical Sunrise')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card" data-cat="detox">
+    <div class="card-img" style="background:linear-gradient(135deg,#f1f8e9,#dcedc8)">🥬</div>
+    <div class="card-body">
+      <div class="card-name">Green Power</div>
+      <div class="card-desc">Concombre, pomme verte, citron et épinard — la détox verte par excellence.</div>
+      <div class="card-footer">
+        <div class="card-price">750 FCFA <span>/ 50cl</span></div>
+        <button class="btn-cmd" onclick="commander('Green Power')">Commander</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="kente-thick"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">O'JUS</div>
+  <p>Jus 100% Naturels • Sans sucre ajouté • Sans conservateur</p>
+  <p style="margin-top:10px;">📞 Contactez-nous pour passer votre commande</p>
+  <p style="margin-top:6px; font-size:.8rem; opacity:.5;">© 2025 O'Jus — Tous droits réservés</p>
+</footer>
+
+<script>
+  function filter(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card[data-cat]').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  function commander(produit) {
+    const msg = `✅ "${produit}" ajouté à votre commande !\n\nContactez O'Jus pour finaliser votre commande. 🍊`;
+    alert(msg);
+  }
+</script>
+
+</body>
+</html>

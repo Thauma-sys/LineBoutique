@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Vercel
+.vercel/
+
+# Environment variables (secrets must NEVER be committed)
+.env
+.env*.local
+.env.production
+.env.development
+
+# Claude Code local config
+.claude/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build / temp
+dist/
+build/
+.tmp/
+*.swp
+
+.vercel
+.env*

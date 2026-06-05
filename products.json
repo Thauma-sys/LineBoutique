@@ -1,0 +1,6 @@
+[
+  {"name": "Lait", "price": 2.5, "image": "https://via.placeholder.com/150?text=Lait"},
+  {"name": "Lait Caillé", "price": 2.8, "image": "https://via.placeholder.com/150?text=Lait+Caillé"},
+  {"name": "Dégué", "price": 3.0, "image": "https://via.placeholder.com/150?text=Dégué"},
+  {"name": "Yaourt Grotto", "price": 3.2, "image": "https://via.placeholder.com/150?text=Yaourt+Grotto"}
+]
