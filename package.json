@@ -3,11 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "description": "Site O'jus - deployment Vercel",
-  "scripts": {
-    "dev": "vercel dev",
-    "build": "vercel build",
-    "deploy": "vercel --prod"
-  },
   "dependencies": {
     "@vercel/blob": "^2.4.0"
   }
